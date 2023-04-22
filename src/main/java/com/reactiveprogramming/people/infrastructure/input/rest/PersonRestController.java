@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,10 +29,9 @@ public class PersonRestController {
   }
 
   @PostMapping
-  public ResponseEntity<Void> savePerson(
+  public ResponseEntity<Mono<PersonResponseDto>> savePerson(
     @RequestBody PersonRequestDto personRequestDto
   ) {
-    personHandler.savePerson(personRequestDto);
-    return new ResponseEntity<Void>(HttpStatus.CREATED);
+    return ResponseEntity.ok(personHandler.savePerson(personRequestDto));
   }
 }

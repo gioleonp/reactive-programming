@@ -8,4 +8,5 @@ import reactor.core.publisher.Mono;
 
 public interface IPersonRepository extends ReactiveMongoRepository<PersonEntity, String> {
     Mono<PersonEntity> findByEmail(String email);
+    Mono<PersonEntity> save(PersonEntity personEntity);
 }

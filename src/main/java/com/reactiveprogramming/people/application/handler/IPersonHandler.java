@@ -6,6 +6,6 @@ import com.reactiveprogramming.people.application.dto.PersonResponseDto;
 import reactor.core.publisher.Mono;
 
 public interface IPersonHandler {
-  void savePerson(PersonRequestDto personRequestDto);
+  Mono<PersonResponseDto> savePerson(PersonRequestDto personRequestDto);
   Mono<PersonResponseDto> findPersonByEmail(String email);
 }

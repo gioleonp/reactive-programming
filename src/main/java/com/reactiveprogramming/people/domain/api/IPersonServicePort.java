@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 public interface IPersonServicePort {
 
-    void savePeople(PersonModel peopleModel);
+    Mono<PersonModel> savePeople(PersonModel peopleModel);
 
     Mono<PersonModel> findPeopleByEmail(String email);
     

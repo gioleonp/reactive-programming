@@ -21,10 +21,10 @@ public class PersonHandlerImpl implements IPersonHandler {
   private final IPersonResponseDtoMapper personResponseDtoMapper;
 
   @Override
-  public void savePerson(PersonRequestDto personRequestDto) {
-    personServicePort.savePeople(
+  public Mono<PersonResponseDto> savePerson(PersonRequestDto personRequestDto) {
+    return personServicePort.savePeople(
       personRequestDtoMapper.toModel(personRequestDto)
-    );
+    ).map(personResponseDtoMapper::toResponseDto);
   }
 
   @Override

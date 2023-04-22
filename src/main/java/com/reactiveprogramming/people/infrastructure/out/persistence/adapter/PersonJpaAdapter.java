@@ -1,13 +1,12 @@
 package com.reactiveprogramming.people.infrastructure.out.persistence.adapter;
 
-import org.springframework.stereotype.Service;
-
 import com.reactiveprogramming.people.domain.model.PersonModel;
 import com.reactiveprogramming.people.domain.spi.IPersonPersistencePort;
 import com.reactiveprogramming.people.infrastructure.out.persistence.entity.PersonEntity;
 import com.reactiveprogramming.people.infrastructure.out.persistence.mapper.IPersonEntityMapper;
 import com.reactiveprogramming.people.infrastructure.out.persistence.repository.IPersonRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
@@ -19,9 +18,11 @@ public class PersonJpaAdapter implements IPersonPersistencePort {
 
   @Override
   public Mono<PersonModel> savePeople(PersonModel peopleModel) {
-    PersonEntity peopleEntity = peopleEntityMapper.toEntity(peopleModel);
+    PersonEntity personEntity = peopleEntityMapper.toEntity(peopleModel);
+    personEntity.setId("abccc");
+    System.out.println(personEntity);
     return peopleRepository
-      .save(peopleEntity)
+      .save(personEntity)
       .map(people -> peopleEntityMapper.toModel(people));
   }
 
