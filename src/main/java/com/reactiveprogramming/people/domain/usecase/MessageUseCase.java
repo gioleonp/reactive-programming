@@ -15,7 +15,7 @@ public class MessageUseCase implements IMessageServicePort {
 
   @Override
   public void saveMessage(MessageModel messageModel) {
-    messagePersistencePort.saveMessage(messageModel).subscribe();
+    messagePersistencePort.saveMessage(messageModel);
   }
 
   @Override
